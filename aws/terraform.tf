@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     aws = {
-        source = "hashicorp/aws"
-        version = "~> 6.0"
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
     }
   }
 
@@ -10,6 +10,6 @@ terraform {
 }
 
 provider "aws" {
-    region = "ap-northeast-1"
-    profile = "personal-tf-admin"
+  region  = "ap-northeast-1"
+  profile = "personal-tf-admin"
 }
