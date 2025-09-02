@@ -17,3 +17,9 @@ variable "availability_zone" {
   description = "Availability zone for public subnet"
   type        = string
 }
+
+variable "map_public_ip_on_launch" {
+  description = "Should instances launched in this subnet receive a public IP address?"
+  type        = bool
+  default     = true
+}
