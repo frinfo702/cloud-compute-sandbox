@@ -5,8 +5,9 @@ module "vpc" {
 }
 
 module "subnet" {
-  source     = "./subnet"
-  cidr_block = "10.0.1.0/24"
-  name       = "public_subnet"
-  vpc_id     = module.vpc.vpc_id
+  source            = "./subnet"
+  cidr_block        = "10.0.1.0/24"
+  name              = "public_subnet"
+  vpc_id            = module.vpc.vpc_id
+  availability_zone = "ap-northeast-1a"
 }

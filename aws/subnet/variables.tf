@@ -12,3 +12,8 @@ variable "vpc_id" {
   description = "VPC ID where the subnet will be created"
   type        = string
 }
+
+variable "availability_zone" {
+  description = "Availability zone for public subnet"
+  type        = string
+}
