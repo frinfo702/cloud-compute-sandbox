@@ -17,3 +17,11 @@ module "internet_gateway" {
   vpc_id = module.vpc.vpc_id
   name   = "test-internet-gateway"
 }
+
+module "public_route_table" {
+  source     = "./route_table"
+  vpc_id     = module.vpc.vpc_id
+  cidr_block = "0.0.0.0/0"
+  gateway_id = module.internet_gateway.gateway_id
+  name       = "public-route-table"
+}
