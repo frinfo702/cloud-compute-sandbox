@@ -11,3 +11,9 @@ module "subnet" {
   vpc_id            = module.vpc.vpc_id
   availability_zone = "ap-northeast-1a"
 }
+
+module "internet_gateway" {
+  source = "./internetgateway"
+  vpc_id = module.vpc.vpc_id
+  name   = "test-internet-gateway"
+}
