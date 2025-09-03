@@ -4,12 +4,12 @@ variable "vpc_id" {
 }
 
 variable "cidr_block" {
-  description = "CIDR block for the public route table"
+  description = "Destination CIDR block for the route (e.g., 0.0.0.0/0 for internet access)"
   type        = string
 }
 
 variable "gateway_id" {
-  description = "Gateway ID for the public route table"
+  description = "ID of the Internet Gateway or NAT Gateway for routing traffic"
   type        = string
 }
 
