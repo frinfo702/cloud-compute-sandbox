@@ -25,3 +25,9 @@ module "public_route_table" {
   gateway_id = module.internet_gateway.gateway_id
   name       = "public-route-table"
 }
+
+module "public_route_table_association_with_public_subnet" {
+  source         = "./aws_route_table_association"
+  subnet_id      = module.subnet.subnet_id
+  route_table_id = module.public_route_table.route_table_id
+}
