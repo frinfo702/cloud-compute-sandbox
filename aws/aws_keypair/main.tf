@@ -1,4 +1,35 @@
+# 作成したキーペアを格納するファイルを指定。
+# 存在しないディレクトリを指定した場合は新規にディレクトリを作成してくれる
+locals {
+  public_key_file  = "./.key_pair/${var.key_name}.id_rsa.pub"
+  private_key_file = "./.key_pair/${var.key_name}.id_rsa"
+}
+
+# privateキーのアルゴリズム設定
+resource "tls_private_key" "keygen" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+# local_fileのリソースを指定するとterraformを実行するディレクトリ内でファイル作成やコマンド実行が出来る。
+resource "local_file" "private_key_pem" {
+  filename = local.private_key_file
+  content  = tls_private_key.keygen.private_key_pem
+  provisioner "local-exec" {
+    command = "chmod 600 ${local.private_key_file}"
+  }
+}
+
+resource "local_file" "public_key_openssh" {
+  filename = local.public_key_file
+  content  = tls_private_key.keygen.public_key_openssh
+  provisioner "local-exec" {
+    command = "chmod 600 ${local.public_key_file}"
+  }
+}
+
+# AWSキーペアリソース
 resource "aws_key_pair" "deployer" {
-  key_name   = "deployer-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3F6tyPEFEzV0LX3X8BsXdMsQz1x2cEikKDEY0aIj41qgxMCP/iteneqXSIFZBp5vizPvaoIR3Um9xK7PGoW8giupGn+EPuxIA4cDM4vzOqOkiMPhz5XK0whEjkVzTo4+S0puvDZuwIsdiW9mxhJc7tgBNL0cYlWSYVkz4G/fslNfRPW5mYAM49f4fhtxPb5ok4Q2Lg9dPKVHO/Bgeu5woMc7RY0p1ej6D4CKFE6lymSDJpW0YHX/wqE9+cfEauh7xZcG0q9t2ta6F6fmX0agvpFyZo8aFbXeUBr7osSCJNgvavWbM/06niWrOvYX2xwWdhXmXSrbX8ZbabVohBK41 email@example.com"
+  key_name   = var.key_name
+  public_key = tls_private_key.keygen.public_key_openssh
 }

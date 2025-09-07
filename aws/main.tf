@@ -33,7 +33,8 @@ module "public_route_table_association_with_public_subnet" {
 }
 
 module "keypair" {
-  source = "./aws_keypair"
+  source   = "./aws_keypair"
+  key_name = "deployer-key"
 }
 
 module "aws_instance" {
