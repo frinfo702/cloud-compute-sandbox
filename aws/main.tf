@@ -53,3 +53,9 @@ module "aws_instance" {
   subnet_id              = module.subnet.subnet_id
   private_ip             = "10.0.1.10"
 }
+
+module "aws_ebs_volume" {
+  source            = "./aws_ebs_volume"
+  availability_zone = "ap-northeast-1a"
+  size              = 5
+}
