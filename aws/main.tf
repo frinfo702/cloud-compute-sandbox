@@ -58,4 +58,5 @@ module "aws_ebs_volume" {
   source            = "./aws_ebs_volume"
   availability_zone = "ap-northeast-1a"
   size              = 5
+  name              = "web-server-ebs"
 }
