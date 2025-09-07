@@ -31,3 +31,14 @@ module "public_route_table_association_with_public_subnet" {
   subnet_id      = module.subnet.subnet_id
   route_table_id = module.public_route_table.route_table_id
 }
+
+module "keypair" {
+  source = "./aws_keypair"
+}
+
+module "aws_instance" {
+  source        = "./ec2"
+  instance_type = "t4g.micro"
+  name          = "web-server"
+  key_name      = module.keypair.key_name
+}
