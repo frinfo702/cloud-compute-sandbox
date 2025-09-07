@@ -14,12 +14,12 @@ data "aws_ami" "amazon_linux_2023" {
 }
 
 resource "aws_instance" "web_server" {
-  ami                    = data.aws_ami.amazon_linux_2023.id
-  instance_type          = var.instance_type
-  key_name               = var.key_name
-  vpc_security_group_ids = var.vpc_security_group_ids
-  subnet_id              = var.subnet_id
-  public_ip              = true
+  ami                         = data.aws_ami.amazon_linux_2023.id
+  instance_type               = var.instance_type
+  key_name                    = var.key_name
+  vpc_security_group_ids      = var.vpc_security_group_ids
+  subnet_id                   = var.subnet_id
+  associate_public_ip_address = true
 
   tags = {
     Name = var.name
