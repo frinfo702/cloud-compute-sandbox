@@ -45,10 +45,11 @@ module "security_group" {
 }
 
 module "aws_instance" {
-  source                 = "./ec2"
+  source                 = "./aws_instance"
   instance_type          = "t4g.micro"
   name                   = "web-server"
   key_name               = module.keypair.key_name
   vpc_security_group_ids = [module.security_group.security_group_id]
   subnet_id              = module.subnet.subnet_id
+  private_ip             = "10.0.1.10"
 }

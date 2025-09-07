@@ -22,3 +22,8 @@ variable "subnet_id" {
   description = ""
   type        = string
 }
+
+variable "private_ip" {
+  description = ""
+  type        = string
+}
