@@ -1,5 +1,5 @@
 variable "subnet_id" {
-  description = "Subnet  ID for aws_route_table_association"
+  description = "Subnet ID for aws_route_table_association"
   type        = string
 }
 
