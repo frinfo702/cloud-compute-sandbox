@@ -1,6 +1,6 @@
-# 目的
+# Purpose
 
-以下のクラウドを扱う
+Handle the following cloud platforms:
 - GCP 
 - AWS
 - cloudflare

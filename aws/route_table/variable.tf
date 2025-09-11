@@ -17,4 +17,3 @@ variable "name" {
   description = "Name tag for the public route table"
   type        = string
 }
-
